@@ -1,0 +1,23 @@
+
+" fuzzy search settings
+let g:ctrlp_show_hidden = 1
+map <C-p> :CtrlP<CR>
+
+
+" file tree explorer settings
+map <C-b> :NERDTreeToggle<CR>
+
+" nerdcommenter settings
+let g:NERDSpaceDelims=1
+
+" vim-airline settings
+
+
+" auto-pairs settings
+
+
+" supertab settings
+
+
+" syntastic settings
+
