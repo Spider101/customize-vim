@@ -12,7 +12,11 @@ function init_config(){
     log_and_exec "$log_message" "rm -rf $HOME/.vim && rm -f $HOME/.vimrc"
 
     log_message='Setting up the vim configuration files'
-    log_and_exec "$log_message" "mkdir $HOME/.vim && touch $HOME/.vimrc"
+    #sed cannot insert in empty files so we create one with a dummy first line
+    log_and_exec "$log_message" "mkdir $HOME/.vim && echo ' ' > $HOME/.vimrc"
+
+    log_message='Copying the static dotfiles into home directory'
+    log_and_exec "$log_message" "rm -rf $HOME/dotfiles && cp -r $1 $HOME"
 }
 
 function editor_config(){
@@ -37,18 +41,40 @@ function setup_vim_pathogen(){
 function install_vim_plugins(){
     log_message='Installing vim plugins'
     export -f log_and_exec
-    log_and_exec "$log_message" "source $HOME/vim_plugins_install.sh"
+    log_and_exec "$log_message" "source $1"
 }
 
 function build_vimrc(){
-    #basic_config_args=(vimBasicConfig vimrc.basic_config 'basic config for editing' 'Basic Editor Behaviour')
-    #keymap_config_args=(vimKeyMap vimrc.keymap 'basic keymap config' 'Keymap Config')
-    #plugin_config_args=(vimBundleConfig vimrc.bundle_config 'config for plugins' 'Plugin Config')
+    declare -A configArgs1=(
+        [var_name]=vimBasicConfig
+        [file_name]=vimrc.basic_config
+        [comment]='basic config for editing'
+        [log_message]='1. Basic Editor Behaviour'
+    )
+    declare -A configArgs2=(
+        [var_name]=vimKeyMap
+        [file_name]=vimrc.keymap
+        [comment]='basic keymap config'
+        [log_message]='2. Keymap Config'
+    )
+    declare -A configArgs3=(
+        [var_name]=vimPluginConfig
+        [file_name]=vimrc.plugin_config
+        [comment]='config for plugins'
+        [log_message]='3. Plugin Config'
+    )
+
+    for config_name in ${!configArgs@}
+    do
+        declare -n config_args=$config_name
+        editor_config ${config_args[var_name]} ${config_args[file_name]} "${config_args[comment]}" "${config_args[log_message]}"
+    done
 }
 
-init_config
+init_config "$HOME/vimrc_setup/dotfiles" #path to the dotfiles -- change if needed
 setup_vim_pathogen
-install_vim_plugins
+install_vim_plugins "$HOME/vimrc_setup/vim_plugins_install.sh" #path to vim plugin setup script -- change if needed
 
-
+log_message='Building the vimrc file'
+log_and_exec "$log_message" "build_vimrc"
 
