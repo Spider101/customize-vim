@@ -1,7 +1,7 @@
-#!usr/local/bin/bash
+#!/bin/bash
 
 pathogen_folder="$HOME/.vim/autoload"
-plugins_path=$( echo `dirname "${BASH_SOURCE[0]}"`)'/plugins.json'
+plugins_path=$( echo `dirname "${BASH_SOURCE[0]}"`)'/plugins_metadata.json'
 
 if [ -d $pathogen_folder ]
 then

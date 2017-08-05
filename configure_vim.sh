@@ -1,4 +1,4 @@
-#!bin/bash
+#/!bin/bash
 
 function log_and_exec(){
     printf "\n$1 ..\n"
@@ -30,12 +30,8 @@ function setup_vim_pathogen(){
             curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim"
     log_and_exec "$log_message" "$command"
     
-    pathogen_config_snippet="execute pathogen#infect()\\
-                            syntax on\\
-                            filetype plugin indent on
-                            "
-    sed -i "1 i \\
-        $pathogen_config_snippet" $HOME/.vimrc 
+    pathogen_config_snippet="execute pathogen#infect()\nsyntax on\nfiletype plugin indent on"
+    sed -i "1 i $pathogen_config_snippet" $HOME/.vimrc 
 }
 
 function install_vim_plugins(){
@@ -45,36 +41,21 @@ function install_vim_plugins(){
 }
 
 function build_vimrc(){
-    declare -A configArgs1=(
-        [var_name]=vimBasicConfig
-        [file_name]=vimrc.basic_config
-        [comment]='basic config for editing'
-        [log_message]='1. Basic Editor Behaviour'
-    )
-    declare -A configArgs2=(
-        [var_name]=vimKeyMap
-        [file_name]=vimrc.keymap
-        [comment]='basic keymap config'
-        [log_message]='2. Keymap Config'
-    )
-    declare -A configArgs3=(
-        [var_name]=vimPluginConfig
-        [file_name]=vimrc.plugin_config
-        [comment]='config for plugins'
-        [log_message]='3. Plugin Config'
-    )
+    
+	local config_args_path=$( echo `dirname "${BASH_SOURCE[0]}"` )'/config_args_metadata.json'
+	for row in $(cat $config_args_path | jq -r '.[] | @base64'); do
+		_jq() {
+			echo ${row} | base64 --decode | jq -r ${1}
+		}
+		editor_config $(_jq '.var_name') $(_jq '.file_name') "$(_jq '.comment')" "$(_jq '.log_message')"
 
-    for config_name in ${!configArgs@}
-    do
-        declare -n config_args=$config_name
-        editor_config ${config_args[var_name]} ${config_args[file_name]} "${config_args[comment]}" "${config_args[log_message]}"
-    done
+	done
 }
 
 init_config "$HOME/customize-vim/dotfiles" #path to the dotfiles -- change if needed
 setup_vim_pathogen
 install_vim_plugins "$HOME/customize-vim/vim_plugins_install.sh" #path to vim plugin setup script -- change if needed
 
-#log_message='Building the vimrc file'
-#log_and_exec "$log_message" "build_vimrc"
+log_message='Building the vimrc file'
+log_and_exec "$log_message" "build_vimrc"
 
