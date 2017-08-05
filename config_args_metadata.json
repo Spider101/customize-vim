@@ -1,0 +1,20 @@
+[
+{
+"var_name":"vimBasicConfig",
+"file_name":"vimrc.basic_config",
+"comment":"basic config for editing",
+"log_message":"1. Basic Editor Behaviour"
+},
+{
+"var_name":"vimKeyMap",
+"file_name":"vimrc.keymap",
+"comment":"basic keymap config",
+"log_message":"2. Keymap Config"
+},
+{
+"var_name":"vimPluginConfig",
+"file_name":"vimrc.plugin_config",
+"comment":"config for plugins",
+"log_message":"3. Plugin Config"
+}
+]
