@@ -34,7 +34,7 @@ function setup_vim_pathogen(){
                             syntax on\\
                             filetype plugin indent on
                             "
-    sed -i "" "1 i \\
+    sed -i "1 i \\
         $pathogen_config_snippet" $HOME/.vimrc 
 }
 
@@ -71,10 +71,10 @@ function build_vimrc(){
     done
 }
 
-init_config "$HOME/vimrc_setup/dotfiles" #path to the dotfiles -- change if needed
+init_config "$HOME/customize-vim/dotfiles" #path to the dotfiles -- change if needed
 setup_vim_pathogen
-install_vim_plugins "$HOME/vimrc_setup/vim_plugins_install.sh" #path to vim plugin setup script -- change if needed
+install_vim_plugins "$HOME/customize-vim/vim_plugins_install.sh" #path to vim plugin setup script -- change if needed
 
-log_message='Building the vimrc file'
-log_and_exec "$log_message" "build_vimrc"
+#log_message='Building the vimrc file'
+#log_and_exec "$log_message" "build_vimrc"
 
