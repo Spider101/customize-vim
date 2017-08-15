@@ -5,8 +5,10 @@ function install_gnu_deps(){
 }
 
 function install_bsd_deps(){
+    [[ -z `which brew` ]] && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     [[ -z `which jq` ]] && brew install jq
-    [[ -z `which gsed` ]] && brew install gsed
+    [[ -z `which gsed` ]] && brew install gnu-sed
+    [[ -z `grep 'sed' $HOME/.bash_aliases` ]] && echo "alias sed='gsed'" >> $HOME/.bash_aliases
 }
 
 unameOut="$(uname -s)"

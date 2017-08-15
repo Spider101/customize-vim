@@ -1,8 +1,10 @@
 #/!bin/bash
 
+shopt -s expand_aliases
+source $HOME/.bash_aliases
+
 function log_and_exec(){
     printf "\n$1 ..\n"
-    #echo $2
     eval "$2"
     printf "\nDone!\n"
 }
