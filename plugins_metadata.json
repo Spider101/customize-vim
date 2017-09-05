@@ -43,9 +43,16 @@
 },
 {
     "name":"syntastic",
-    "log_message":"6. Linting capabilities",
+    "log_message":"7. Linting capabilities",
     "url":"https://github.com/vim-syntastic/syntastic.git",
     "config_snippet":"\\n\" syntastic settings\\n",
+    "helptag_partial":"doc"
+},
+{
+    "name":"html-autoclose",
+    "log_message":"8. Auto-closing HTML capabilities",
+    "url":"https://github.com/alvan/vim-closetag.git",
+    "config_snippet":"\\n\" html-autoclose settings\\nlet g:closetag_filenames = '*.html,*.js'\\n",
     "helptag_partial":"doc"
 }
 ]
