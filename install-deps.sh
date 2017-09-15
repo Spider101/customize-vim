@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function install_gnu_deps(){
-    dpkg -s jq
+    [[ -z `command -v jq` ]] && sudo apt-get install jq
 }
 
 function install_bsd_deps(){
