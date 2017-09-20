@@ -21,5 +21,5 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" delete words shortcut
-nmap dw dwi
+" close sign (syntastic) gutter
+cab scl sign unplace *

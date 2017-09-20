@@ -45,7 +45,7 @@
     "name":"syntastic",
     "log_message":"7. Linting capabilities",
     "url":"https://github.com/vim-syntastic/syntastic.git",
-    "config_snippet":"\\n\" syntastic settings\\nlet g:syntastic_quiet_messages = { 'level': 'warnings'  }\\nlet g:syntastic_always_populate_loc_list = 1",
+    "config_snippet":"\\n\" syntastic settings\\nlet g:syntastic_quiet_messages = { 'level': 'warnings'  }\\nlet g:syntastic_always_populate_loc_list = 1\\nlet g:syntastic_enable_signs = 0",
     "helptag_partial":"doc"
 },
 {
