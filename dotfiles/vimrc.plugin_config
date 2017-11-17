@@ -2,6 +2,14 @@
 " fuzzy search settings
 let g:ctrlp_show_hidden = 1
 map <C-p> :CtrlP<CR>
+if exists("g:ctrl_user_command")
+    unlet g:ctrlp_user_command
+endif
+set wildignore+=*/node_modules/*,*/data/interim/*,*/data/raw/*,*/data/processed/*,*/data/models/*,*/data/legacy_data/*,*/data/external/*,*.swp,*.pyc
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 
 " file tree explorer settings
