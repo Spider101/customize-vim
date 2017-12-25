@@ -28,29 +28,43 @@
     "helptag_partial":"doc"
 },
 {
+    "name":"vim-airline-themes",
+    "log_message":"5. Vim Airline Themes",
+    "url":"https://github.com/vim-airline/vim-airline-themes.git",
+    "config_snippet":"\\n\" vim-airline theme settings\\nlet g:airline_powerline_fonts=1\\nlet g:airline#extensions#whitespace#enabled = 0\\nlet g:airline_theme='simple'\\n",
+    "helptag_partial":"doc"
+},
+{
+    "name":"vim-fugitive",
+    "log_message":"6. Git Wrapper",
+    "url":"https://github.com/tpope/vim-fugitive.git",
+    "config_snippet":"\\n\" vim-fugitive settings\\n",
+    "helptag_partial":"doc"
+},
+{
     "name":"auto-pairs",
-    "log_message":"5. Auto Pair brackets, parens, quotes",
+    "log_message":"7. Auto Pair brackets, parens, quotes",
     "url":"https://github.com/jiangmiao/auto-pairs.git",
     "config_snippet":"\\n\" auto-pairs settings\\n",
     "helptag_partial":"doc"
 },
 {
     "name":"supertab",
-    "log_message":"6. Easy autocompletion",
+    "log_message":"8. Easy autocompletion",
     "url":"https://github.com/ervandew/supertab.git",
     "config_snippet":"\\n\" supertab settings\\n",
     "helptag_partial":"doc"
 },
 {
     "name":"syntastic",
-    "log_message":"7. Linting capabilities",
+    "log_message":"9. Linting capabilities",
     "url":"https://github.com/vim-syntastic/syntastic.git",
     "config_snippet":"\\n\" syntastic settings\\nlet g:syntastic_quiet_messages = { 'level': 'warnings'  }\\nlet g:syntastic_always_populate_loc_list = 1\\nlet g:syntastic_enable_signs = 0",
     "helptag_partial":"doc"
 },
 {
     "name":"html-autoclose",
-    "log_message":"8. Auto-closing HTML capabilities",
+    "log_message":"10. Auto-closing HTML capabilities",
     "url":"https://github.com/alvan/vim-closetag.git",
     "config_snippet":"\\n\" html-autoclose settings\\nlet g:closetag_filenames = '*.html,*.js'\\n",
     "helptag_partial":"doc"
